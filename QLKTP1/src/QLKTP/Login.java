@@ -4,14 +4,13 @@
  */
 package QLKTP;
 
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
     public Login() {
         initComponents();
     }
@@ -27,13 +26,14 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        pass = new javax.swing.JPasswordField();
         name = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
         btnOK = new javax.swing.JButton();
         btnForgot = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HỆ THỐNG QUẢN LÍ KHO THỰC PHẨM");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setOpaque(false);
@@ -55,9 +55,12 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Password:");
 
-        pass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        name.setToolTipText("");
+        name.setActionCommand(""); // NOI18N
+
+        pass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pass.setActionCommand("null");
 
         btnOK.setBackground(new java.awt.Color(153, 255, 255));
         btnOK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -71,6 +74,11 @@ public class Login extends javax.swing.JFrame {
         btnForgot.setBackground(new java.awt.Color(153, 255, 255));
         btnForgot.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnForgot.setText("Forgot?");
+        btnForgot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnForgotActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,7 +158,6 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng điền Password");
         else {
             try {
-                
                 String url = "jdbc:mysql://localhost:3306/oop";
                 String user = "root";
                 String password = "1511";
@@ -159,7 +166,7 @@ public class Login extends javax.swing.JFrame {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, name.getText());
                 ps.setString(2, pass.getText());
-                
+
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     dispose();
@@ -179,9 +186,13 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOKActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnForgotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgotActionPerformed
+        Forgot a = new Forgot();
+        a.setVisible(true);
+    }//GEN-LAST:event_btnForgotActionPerformed
+
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
