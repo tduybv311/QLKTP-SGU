@@ -4,6 +4,7 @@
  */
 package QLKTP;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,6 +46,7 @@ public class Forgot extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("UPDATE NEW PASSWORD");
+        setLocation(new java.awt.Point(400, 200));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("UPDATE NEW PASSWORD");
@@ -58,6 +60,11 @@ public class Forgot extends javax.swing.JFrame {
         txname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         pass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passKeyPressed(evt);
+            }
+        });
 
         btnOK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnOK.setText("OK");
@@ -133,17 +140,45 @@ public class Forgot extends javax.swing.JFrame {
             String user = "root";
             String password = "1511";
             Connection conn = DriverManager.getConnection(url, user, password);
-            String sql = "update nguoidung set MATKHAU =? where TENDN =?";
+            String name = txname.getText().trim();
+            String sql = "select TENDN from nguoidung where TENDN ='" + name + "'";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, pass.getText());
-            ps.setString(2, txname.getText());
-            int rs = ps.executeUpdate();
+            ResultSet rs = ps.executeQuery(sql);
+            if (rs.next()) {
+                ps.executeUpdate("update nguoidung set MATKHAU ='" + pass.getText() + "' where TENDN = '" + name + "'");
+                JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-        dispose();
     }//GEN-LAST:event_btnOKActionPerformed
+
+    private void passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String url = "jdbc:mysql://localhost:3306/oop";
+                String user = "root";
+                String password = "1511";
+                Connection conn = DriverManager.getConnection(url, user, password);
+                String name = txname.getText().trim();
+                String sql = "select TENDN from nguoidung where TENDN ='" + name + "'";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery(sql);
+                if (rs.next()) {
+                    ps.executeUpdate("update nguoidung set MATKHAU ='" + pass.getText() + "' where TENDN = '" + name + "'");
+                    JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_passKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

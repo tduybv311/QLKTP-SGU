@@ -25,11 +25,5 @@ public class Connect_SQL {
     }
         public static void main(String[] args) throws SQLException {
         Connection connection = getJDBCConnection();
-        
-        if (connection != null) {
-            System.out.println("Data connection successful");
-        } else {
-            System.out.println("Data connection failed");
-        }
     }
 }
