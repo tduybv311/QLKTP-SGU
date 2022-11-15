@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package QLKTP;
+package giaodien;
 
 import javax.swing.JOptionPane;
 
@@ -39,11 +39,9 @@ public class PhieuXuat extends javax.swing.JFrame {
         btnXuatReset = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
-        setLocation(new java.awt.Point(500, 250));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -94,14 +92,6 @@ public class PhieuXuat extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Đơn vị");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Exit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -131,16 +121,14 @@ public class PhieuXuat extends javax.swing.JFrame {
                                 .addComponent(txXuatSL, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cbXuatNguon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnXuatReset)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnXuatOK, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXuatReset)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXuatOK, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,8 +161,7 @@ public class PhieuXuat extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXuatReset)
-                    .addComponent(btnXuatOK)
-                    .addComponent(jButton1))
+                    .addComponent(btnXuatOK))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -200,10 +187,6 @@ public class PhieuXuat extends javax.swing.JFrame {
         cbXuatNguon.setSelectedIndex(0);
         cbXuatDV.setSelectedIndex(0);
     }//GEN-LAST:event_btnXuatResetActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     public static void main(String args[]) {
@@ -245,7 +228,6 @@ public class PhieuXuat extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbXuatDV;
     private javax.swing.JComboBox<String> cbXuatLoai;
     private javax.swing.JComboBox<String> cbXuatNguon;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
