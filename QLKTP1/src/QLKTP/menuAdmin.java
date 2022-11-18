@@ -42,6 +42,7 @@ public class menuAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN");
+        setLocation(new java.awt.Point(600, 300));
 
         jMenu1.setText("Kiểm kho");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

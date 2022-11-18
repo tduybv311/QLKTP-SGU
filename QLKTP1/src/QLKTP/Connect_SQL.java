@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.*;
 
 public class Connect_SQL {
-    public static Connection getJDBCConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         String myDriver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306";
         String user = "root";
@@ -24,6 +24,6 @@ public class Connect_SQL {
         return null;
     }
         public static void main(String[] args) throws SQLException {
-        Connection connection = getJDBCConnection();
+        Connection connection = getConnection();
     }
 }

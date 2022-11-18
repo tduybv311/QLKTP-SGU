@@ -225,6 +225,8 @@ public class DangKi extends javax.swing.JFrame {
                     int rs = ps.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Tạo tài khoản thành công!");
                     dispose();
+                    Login a = new Login();
+                    a.setVisible(true);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
