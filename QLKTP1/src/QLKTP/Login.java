@@ -31,11 +31,14 @@ public class Login extends javax.swing.JFrame {
         btnOK = new javax.swing.JButton();
         btnForgot = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        cbxRole = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HỆ THỐNG QUẢN LÍ KHO THỰC PHẨM");
         setLocation(new java.awt.Point(270, 100));
+        setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setOpaque(false);
@@ -105,6 +108,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Role:");
+
+        cbxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Employee", " " }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -118,17 +126,16 @@ public class Login extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(395, 395, 395)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                            .addComponent(pass)))
+                            .addComponent(pass)
+                            .addComponent(cbxRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(380, 380, 380)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -136,8 +143,11 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnForgot)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                .addComponent(btnForgot))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(377, 377, 377)
+                        .addComponent(jLabel4)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +156,13 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(158, 158, 158)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cbxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,6 +193,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel1, gridBagConstraints);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
@@ -188,19 +203,19 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng điền Password");
         else {
             try {
-                String url = "jdbc:mysql://localhost:3306/oop";
+                String url = "jdbc:mysql://localhost:3306/mysql";
                 String user = "root";
-                String password = "1511";
+                String password = "1234";
                 Connection conn = DriverManager.getConnection(url, user, password);
-                String sql = "select * from nguoidung where TENDN =? and MATKHAU =?";
+                String sql = "select * from nguoidung where TENDN =? and MATKHAU =? and PHANQUYEN=?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, name.getText());
                 ps.setString(2, pass.getText());
-
+                ps.setString(3, cbxRole.getSelectedItem().toString());
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     dispose();
-                    if (name.getText().equals("admin")) {
+                    if (cbxRole.getSelectedItem().toString().equals("Admin")) {
                         menuAdmin a = new menuAdmin();
                         a.setVisible(true);
                     } else {
@@ -229,19 +244,19 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng điền Password");
             } else {
                 try {
-                    String url = "jdbc:mysql://localhost:3306/oop";
+                    String url = "jdbc:mysql://localhost:3306/mysql";
                     String user = "root";
-                    String password = "1511";
+                    String password = "1234";
                     Connection conn = DriverManager.getConnection(url, user, password);
-                    String sql = "select * from nguoidung where TENDN =? and MATKHAU =?";
+                    String sql = "select * from nguoidung where TENDN =? and MATKHAU =? and PHANQUYEN=?";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ps.setString(1, name.getText());
                     ps.setString(2, pass.getText());
-
+                    ps.setString(3, cbxRole.getSelectedItem().toString());
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
                         dispose();
-                        if (name.getText().equals("admin")) {
+                        if (cbxRole.getSelectedItem().toString().equals("Admin")) {
                             menuAdmin a = new menuAdmin();
                             a.setVisible(true);
                         } else {
@@ -273,15 +288,15 @@ public class Login extends javax.swing.JFrame {
                         String user = "root";
                         String password = "1511";
                         Connection conn = DriverManager.getConnection(url, user, password);
-                        String sql = "select * from nguoidung where TENDN =? and MATKHAU =?";
+                        String sql = "select * from nguoidung where TENDN =? and MATKHAU =? and PHANQUYEN=?";
                         PreparedStatement ps = conn.prepareStatement(sql);
                         ps.setString(1, name.getText());
                         ps.setString(2, pass.getText());
-
+                        ps.setString(3, cbxRole.getSelectedItem().toString());
                         ResultSet rs = ps.executeQuery();
                         if (rs.next()) {
                             dispose();
-                            if (name.getText().equals("admin")) {
+                            if (cbxRole.getSelectedItem().toString().equals("Admin")) {
                                 menuAdmin a = new menuAdmin();
                                 a.setVisible(true);
                             } else {
@@ -301,6 +316,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DangKi a = new DangKi();
         a.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -338,6 +354,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnForgot;
     private javax.swing.JButton btnOK;
+    private javax.swing.JComboBox<String> cbxRole;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -345,6 +362,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
     private javax.swing.JPasswordField pass;

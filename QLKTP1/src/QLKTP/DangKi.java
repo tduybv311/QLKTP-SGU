@@ -41,6 +41,8 @@ public class DangKi extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cbxRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(420, 150));
@@ -100,6 +102,11 @@ public class DangKi extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel5.setText("Role:");
+
+        cbxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Employee" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,15 +126,18 @@ public class DangKi extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4))
+                                    .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                                     .addComponent(pass1)
-                                    .addComponent(pass2))))))
+                                    .addComponent(pass2)
+                                    .addComponent(cbxRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,7 +145,11 @@ public class DangKi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jLabel1)
-                .addGap(56, 56, 56)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,7 +166,7 @@ public class DangKi extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,6 +180,7 @@ public class DangKi extends javax.swing.JFrame {
         name.setText("");
         pass1.setText("");
         pass2.setText("");
+        cbxRole.setSelectedIndex(-1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -175,12 +190,13 @@ public class DangKi extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (pass1.getText().equals(pass2.getText())) {
             try {
-                String url = "jdbc:mysql://localhost:3306/oop";
+                String url = "jdbc:mysql://localhost:3306/mysql";
                 String user = "root";
-                String password = "1511";
+                String password = "1234";
                 java.sql.Connection conn = DriverManager.getConnection(url, user, password);
                 String username = name.getText().trim();
                 String pass = pass1.getText().trim();
+                String role = cbxRole.getSelectedItem().toString();
                 String sql1 = "select TENDN from nguoidung where TENDN ='" + username + "'";
                 PreparedStatement ps1 = conn.prepareStatement(sql1);
                 ResultSet rs1 = ps1.executeQuery(sql1);
@@ -188,11 +204,13 @@ public class DangKi extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Tài khoản đã tồn tại!");
                     dispose();
                 } else {
-                    String sql = "insert into nguoidung(TENDN,MATKHAU) values (?,?)";
+                    String sql = "insert into nguoidung(TENDN,MATKHAU,PHANQUYEN) values (?,?,?)";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ps.setString(1, username);
                     ps.setString(2, pass);
+                    ps.setString(3,role);
                     int rs = ps.executeUpdate();
+                    JOptionPane.showMessageDialog(this,"Dang ki thanh cong!!!");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -206,9 +224,9 @@ public class DangKi extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (pass1.getText().equals(pass2.getText())) {
             try {
-                String url = "jdbc:mysql://localhost:3306/oop";
+                String url = "jdbc:mysql://localhost:3306/mysql";
                 String user = "root";
-                String password = "1511";
+                String password = "1234";
                 java.sql.Connection conn = DriverManager.getConnection(url, user, password);
                 String username = name.getText().trim();
                 String pass = pass1.getText().trim();
@@ -225,8 +243,6 @@ public class DangKi extends javax.swing.JFrame {
                     int rs = ps.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Tạo tài khoản thành công!");
                     dispose();
-                    Login a = new Login();
-                    a.setVisible(true);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -273,6 +289,7 @@ public class DangKi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxRole;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -280,6 +297,7 @@ public class DangKi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField name;
     private javax.swing.JPasswordField pass1;
     private javax.swing.JPasswordField pass2;
