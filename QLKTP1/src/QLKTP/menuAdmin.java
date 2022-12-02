@@ -206,12 +206,12 @@ public class menuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        new Billing().setVisible(true);
+        new PhieuXuat().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        new Products().setVisible(true);
+        new PhieuNhap().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -221,7 +221,7 @@ public class menuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1MouseClicked
 
     private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
-        new Billing().setVisible(true);
+        new PhieuXuat().setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem2MouseClicked
 

@@ -66,6 +66,10 @@ public class Employee extends javax.swing.JFrame {
         psPassword = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         txIDDN = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btnRefresh = new javax.swing.JButton();
+        txTimNV = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -180,6 +184,49 @@ public class Employee extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 153, 255));
         jLabel10.setText("ID :");
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel3.setText("Search :");
+
+        btnRefresh.setBackground(new java.awt.Color(0, 153, 255));
+        btnRefresh.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
+        btnRefresh.setText("Refresh");
+        btnRefresh.setBorder(null);
+        btnRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRefreshMouseClicked(evt);
+            }
+        });
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
+        txTimNV.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txTimNVInputMethodTextChanged(evt);
+            }
+        });
+        txTimNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txTimNVActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Filter");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -188,14 +235,14 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(156, 156, 156)
                                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnLammoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(84, 84, 84))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel10))
@@ -230,8 +277,17 @@ public class Employee extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(377, 377, 377))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(366, 366, 366)
-                .addComponent(jLabel2)
+                .addGap(280, 280, 280)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txTimNV, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(5, 5, 5)
+                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -259,7 +315,13 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLammoi, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txTimNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -439,7 +501,6 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDSNVMouseClicked
 
     private void btnLammoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLammoiMouseClicked
-        txIDDN.setText("");
         txUsername.setText("");
         psPassword.setText("");
         cbxRole.setSelectedIndex(-1);
@@ -451,7 +512,7 @@ public class Employee extends javax.swing.JFrame {
         } else {
             try {
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","1234");
-                String query = "Update mysql.nguoidung set TENDN='"+txUsername.getText()+"'"+",MATKHAU='"+psPassword.getText()+"'"+",PHANQUYEN='"+cbxRole.getSelectedItem().toString()+"'"+"WHERE IDDN="+txIDDN.getText();
+                String query = "Update mysql.nguoidung set TENDN='"+txUsername.getText()+"'"+",MATKHAU='"+psPassword.getText()+"'"+",PHANQUYEN='"+cbxRole.getSelectedItem().toString()+"'"+"WHERE IDDN";
                 Statement Add = Con.createStatement();
                 Add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this,"Employee updated!!!");
@@ -488,7 +549,7 @@ public class Employee extends javax.swing.JFrame {
             try {
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "1234");
                 PreparedStatement add = Con.prepareStatement("INSERT INTO nguoidung values(?,?,?,?)");
-                add.setInt(1,Integer.valueOf(txIDDN.getText()));
+                 add.setInt(1,Integer.valueOf(txIDDN.getText()));
                 add.setString(2, txUsername.getText());
                 add.setString(3,psPassword.getText());
                 add.setString(4, cbxRole.getSelectedItem().toString());
@@ -511,10 +572,9 @@ public class Employee extends javax.swing.JFrame {
             try {
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","1234");
                 PreparedStatement add = Con.prepareStatement("INSERT INTO nguoidung values(?,?,?,?)");
-                add.setInt(1,Integer.valueOf(txIDDN.getText()));
-                add.setString(2, txUsername.getText());
-                add.setString(3,psPassword.getText());
-                add.setString(4, cbxRole.getSelectedItem().toString());
+                add.setString(1, txUsername.getText());
+                add.setString(2,psPassword.getText());
+                add.setString(3, cbxRole.getSelectedItem().toString());
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Employee added sucessfully!!!!");
             } catch (Exception e) {
@@ -522,6 +582,41 @@ public class Employee extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txUsernameKeyPressed
+
+    private void btnRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMouseClicked
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","1234");
+            St  = Con.createStatement();
+            Rs = St.executeQuery("Select * from mysql.nguoidung");
+            tblDSNV.setModel(DbUtils.resultSetToTableModel(Rs));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        txTimNV.setText("");
+    }//GEN-LAST:event_btnRefreshMouseClicked
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void txTimNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTimNVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txTimNVActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try{
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","1234");
+            St  = Con.createStatement();
+            Rs = St.executeQuery("Select * from mysql.nguoidung where TENDN='"+txTimNV.getText()+"'");
+            tblDSNV.setModel(DbUtils.resultSetToTableModel(Rs));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void txTimNVInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txTimNVInputMethodTextChanged
+
+    }//GEN-LAST:event_txTimNVInputMethodTextChanged
 
     
     
@@ -562,10 +657,12 @@ public class Employee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLammoi;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbxRole;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -574,6 +671,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -588,6 +686,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPasswordField psPassword;
     private javax.swing.JTable tblDSNV;
     private javax.swing.JTextField txIDDN;
+    private javax.swing.JTextField txTimNV;
     private javax.swing.JTextField txUsername;
     // End of variables declaration//GEN-END:variables
 }
